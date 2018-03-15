@@ -1,0 +1,7 @@
+@charset "utf-8";
+#phone_max {
+	background-image: url(../images/beijing.png);
+	height: 500px;
+	width: 450px;
+	background-position: 450px 500px;
+}

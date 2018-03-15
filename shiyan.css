@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */	
+
+.maxbox,  
+.banner,  
+.xiaoqu,
+.fotter{   
+    margin-top:10px;  
+    text-align:center;  
+}  
+img{
+	max-width:98%;
+	max-height:98%;
+}
+
+a {
+	font-size: 18px;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color:#000;
+}
+a:hover{color:#F00}
+
+@media (min-width: 1024px){
+	body{
+				background-image:url(images/changqing.png)
+		}
+	#maxbox {
+		margin:0 auto;
+		width: 1024px;
+		height: 768px;
+		background-position: 100% 100%;
+
+	}
+	#banner {
+		height: 5%;
+		width: 80%;
+		background-repeat: no-repeat;
+		margin-left: 10%;
+		margin-top: 2%;
+	}
+	#xiaoqu {
+		height: 45%;
+		width: 100%;
+		text-align: center;
+	}
+	#fotter {
+		height: 10%;
+		width: 100%;
+		margin-top: 5%;
+		text-align: center;
+		display: block;
+		font-weight: bold;
+		font-size: 18px;
+	}
+	#wys {
+	height: 22.5%;
+	width: 30%;
+	margin-top: 5%;
+	margin-left: 35%;
+	}
+	#cq {
+	height: 22.5%;
+	width: 30%;
+	margin-top: 6%;
+	margin-left: 35%;
+	margin-bottom: 5%;
+	}
+
+}
+
+
+@media screen and (min-width:960px){
+	body{
+			background-image:url(images/changqing.png)
+		}
+	#maxbox {
+		margin:0 auto;
+		width: 960px;
+		height: 100%;
+		background-position: 100% 100%;
+		
+	}
+	#banner {
+	height: 5%;
+	width: 80%;
+	background-repeat: no-repeat;
+	margin-left: 10%;
+	margin-top: 2%;
+	}
+	#xiaoqu {
+		height: 45%;
+		width: 100%;
+		text-align: center;
+	}
+	#fotter {
+		height: 10%;
+		width: 100%;
+		margin-top: 5%;
+		text-align: center;
+		display: block;
+		font-weight: bold;
+		font-size: 18px;
+	}
+	#wys {
+	height: 22.5%;
+	width: 30%;
+	margin-top: 5%;
+	margin-left: 35%;
+	}
+	#cq {
+	height: 22.5%;
+	width: 30%;
+	margin-top: 6%;
+	margin-left: 35%;
+	margin-bottom: 5%;
+	}
+
+	
+}
+
+/*手机端*/
+@media screen and (max-width:600px){
+	#maxbox {
+		margin:0 auto;
+		width: auto;
+		height: auto;
+		background-position: 100% 100%;
+		background-image:url(images/beijing.png);
+		
+	}
+	#banner {
+		height: 10%;
+		width: 80%;
+		margin-left: 10%;
+		margin-top: 2%;
+	}
+	#xiaoqu {
+		height: 45%;
+		width: 100%;
+		text-align: center;
+	}
+	#wys {
+		height: 30%;
+		width: 40%;
+		margin-top: 5%;
+		margin-left: 35%;
+	}
+	#cq {
+		height: 30%;
+		width: 40%;
+		margin-top: 5%;
+		margin-left: 35%;
+		margin-bottom: 7%;
+	}
+	#fotter {
+		height: 10%;
+		width: 100%;
+		margin-top: 5%;
+		margin-bottom: 20%;
+		text-align: center;
+		display: block;
+		font-weight: bold;
+		font-size: 13px;
+	}
+	
+	#tc {
+	height: 130px;
+	width: 100%;
+}
+
+}

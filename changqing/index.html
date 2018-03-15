@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, width=device-width, user-scalable=no">
+<style type="text/css">
+*{margin:0;padding:0;}
+html,body{width:100%;height:100%;}
+body{font-size:12px;font-family:微软雅黑;}
+.all_box{position: absolute; background: url("images/bg.jpg"); width: 100%; height:100%;}
+.content{position: relative; background: url("images/bg4.jpg"); width: 1080px; height: 680px;margin:auto;}
+.map_top{position:relative; width:100%;height:20%;}
+.button_box{position:absolute; width:500px; height:20px; top:140px;left:10px;}
+.map_box{position:relative; background: #adb; width:80%; height:78%;left:20%;margin-top:0px;}
+#panelbtn {position: absolute;top:140px;right: 0px;width: 30px;}
+#panel {
+            position: absolute;
+            background-color: white;
+            max-height: 50%;
+            overflow-y: auto;
+            top: 180px;
+            right: 0px;
+            width: 30px;
+        }
+.tip {
+	background-color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: absolute;
+	font-size: 12px;
+	right: 10px;
+	bottom: 10px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	line-height: 30px;
+}
+.weather {
+	background-color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: absolute;
+	font-size: 12px;
+	right: 250px;
+	top: 160px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	line-height: 30px;
+}
+
+.searchadd{position:absolute;left:10px;top:135px;}
+
+.erweima{position: absolute;left:10px;bottom:15px;}
+
+#message_box {
+	background-color: #780000;
+	padding-left: 5px;
+	padding-right: 5px;
+	position: absolute;
+	font-size: 12px;
+	width: 400px;
+	top:160px;
+	left:340px;
+	overflow-y: auto;
+}
+ 
+.lnglat{position: absolute;left:10px;top:200px; max-height: 80%;}
+
+.alert_massage{
+	position: absolute; 
+	background: highlight;
+	padding-left: 10px; padding-right: 10px;
+	font-size: 20px;
+	font-style: oblique;
+	text-align: center;
+	color: red;
+	width: 200px; height: 50px; 
+	left: 40%; top: 40%; 
+	display: none;}
+
+.setstp{background: blue; position: absolute; width: 30px; height: 40px; font-size: 18px; left: 300px;}
+
+@media only screen and (max-width: 500px) {
+    .all_box {background-color:lightblue;}
+	.content{position: relative; width: 100%; height: 100%;margin:auto;}
+	.map_top{display: none}
+	.map_box{width:100%; height:100%; left:0;}
+	.button_box{position:absolute; width:500px; height:20px; top:10px;left:10px;}
+	.weather{display: none}
+	.lnglat{position: absolute;left:10px;top:40px; max-height: 80%; display: none;}
+	.erweima{display: none}
+	#message_box{background-color: #780000; padding-left: 5px; padding-right: 5px; position: absolute; font-size: 12px;width: 100%; top:0px;left:0px;}
+}
+
+
+</style>
+<script src="http://webapi.amap.com/maps?v=1.3&key=3501d7059e92738eceefafbab27d1d4c&plugin=AMap.Walking"></script>
+<title>山东交通学院校园导航系统</title>
+</head>
+<body>
+<!--最外层的大盒子-->
+<div class="all_box">
+
+<!--所有内容的盒子-->
+<div class="content">
+
+<!--头部的盒子-->
+<div class="map_top">
+<table width="100%" height:"100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+   <td height="100%" width="60%" background="images/top.jpg">
+   <td height="100%" width="40%" background="images/top.jpg" style="font-size:12px; color:#FFF" >
+    <!-- marquee设置滚动字幕：scrollAmount设置滚动速度，width设置滚动宽度 -->
+   <marquee scrollAmount=2 width=400> 欢迎您来到山东交通学院！</marquee>
+   </td>
+   <tr>
+    <td colspan="3"><img src="images/top1.jpg" width="100%" height="100%"></td>
+  </tr></table>
+  <!--头部盒子的根节点-->
+</div>
+
+<!--地图的盒子-->
+<div class="map_box" id="allmap"></div>
+
+<!--按钮的盒子-->
+<div class="button_box">
+	<table>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<input type="search" id="searchaddress" placeholder="输入地点名称"  list="category" size="14">
+						</td>
+						<td>
+							<input type="image" src="./images/btn_search.jpg" onclick="showaddress()">
+						</td>
+					</tr>
+				</table>
+			</td>
+					<td><input type="button" onclick="setplan(this)" value="隐藏平面图" name="setstp"></td>
+		</tr>
+		<tr>
+			<td>
+				<select id="navigation_method" title="选择导航方式">
+					<option value="输入起点终点导航" selected>输入起点终点导航</option>
+					<option value="以当前位置为起点导航">以当前位置为起点导航</option>
+					<option value="以点击的位置为起点导航">以自定义位置为起点导航</option><br/>
+				</select>
+			</td>
+					
+		</tr>
+		<tr>
+			<td>
+				<input type="search" name="start_point" id="start_point" placeholder="输入起点" size="20" list="category">
+			</td>
+		</tr>
+			<tr><td><input type="search" name="end_point" id="end_point" placeholder="输入终点" size="20" list="category"></td></tr>
+			<tr><td><input type="button" onclick="navigate()" value="开始导航"></td></tr>
+	</table>
+		</div>
+
+<!--导航信息的盒子-->
+<div id="panelbtn"><input type="image" id="panelbutton" src="./images/btn_show.jpg" onclick="hidepanel()"></div>
+<div id="panel"></div>
+
+<!--定位信息的盒子-->
+<div class="tip" id="tip"></div>
+
+<!--天气信息的盒子-->
+<div class="weather" id="weather"></div>
+
+<!--搜索下拉框的地点数据-->
+    <datalist id="category" class="category">    
+            <option value="篮球场">    
+            <option value="报告厅">    
+            <option value="旧澡堂">    
+            <option value="新澡堂">    
+            <option value="菜鸟驿站">    
+            <option value="诚信广场">    
+            <option value="诚信驿站">    
+            <option value="东门">    
+            <option value="足球场">    
+            <option value="工商银行取款机">    
+            <option value="驾校中心">    
+            <option value="近邻宝">    
+            <option value="开水房">    
+            <option value="图书馆">    
+            <option value="日冕景观">    
+            <option value="1号食堂">    
+            <option value="2号食堂">    
+            <option value="风味餐厅">    
+            <option value="南门">    
+            <option value="1号学生公寓">    
+            <option value="2号学生公寓">    
+            <option value="3号学生公寓">    
+            <option value="4号学生公寓">    
+            <option value="5号学生公寓">    
+            <option value="6号学生公寓">    
+            <option value="7号学生公寓">    
+            <option value="8号学生公寓">    
+            <option value="9号学生公寓">    
+            <option value="国际交流中心">    
+            <option value="15号学生公寓">    
+            <option value="16号学生公寓">    
+            <option value="17号学生公寓">    
+            <option value="交院超市">    
+            <option value="时代超市">    
+            <option value="购物中心">    
+            <option value="1号教学楼A座">    
+            <option value="1号教学楼B座">    
+            <option value="1号教学楼C座">    
+            <option value="2号教学楼A座">    
+            <option value="2号教学楼B座">    
+            <option value="2号教学楼C座">    
+            <option value="2号教学楼D座">    
+            <option value="土木实验楼A座">    
+            <option value="土木实验楼B座">    
+            <option value="土木实验楼C座">    
+            <option value="综合实验楼">    
+            <option value="工程中心">    
+            <option value="网球场">    
+            <option value="体育馆">    
+            <option value="校友广场">    
+            <option value="一飞冲天景观">    
+            <option value="一路向东景观">    
+            <option value="校医院">    
+            <option value="咖啡厅">    
+            <option value="一帆风顺景观">    
+            <option value="一往直前景观">    
+            <option value="山东交通学院">    
+    </datalist>
+   
+
+<!--输入起终点信息及导航按钮的盒子-->
+<div class="lnglat" id="myPageTop">
+    <table>
+    		<!--
+    		<tr><td><input type="search" name="start_point" id="start_point" placeholder="输入起点" size="20" list="category"></td></tr>
+			<tr><td><input type="search" name="end_point" id="end_point" placeholder="输入终点" size="20" list="category"></td></tr>
+			<tr><td><input type="button" onclick="navigate()" value="开始导航"></td></tr>
+			-->
+		<!-- <tr><td class="column2"><label>左击获取经纬度：</label></td></tr>
+            <tr><td class="column2"><input type="text" readonly="true" id="lnglat"></td></tr> -->
+    </table>
+    
+	<!--输入起终点信息及导航按钮的盒子的根节点-->	
+	</div>
+	
+	<!-- 二维码的盒子 -->
+	<div class="erweima"><img title="微信扫一扫可以在手机访问哦" style="width: 130px;height: 130px;" src="./images/ewm.png"></div>
+	
+<!-- 显示详细信息的盒子 -->
+<div id="message_box" class="message_box"></div>
+
+	<!--所有内容的盒子的根节点-->
+	</div>
+
+	<!--最外层大盒子的根节点-->
+	</div>
+
+<!--提示信息的盒子-->
+<div id="alert_massage" class="alert_massage">
+提示：
+</div>
+<!--提示信息的盒子的根节点-->
+
+
+<script type="text/javascript">
+//创建高德地图API
+var map = new AMap.Map("allmap", {
+        resizeEnable: true,
+        zoom:18,
+        center: [116.793001,36.538819],
+		
+    });
+	
+//设置地图显示的范围
+var bounds = new AMap.Bounds([116.782761,36.533079],[116.801788,36.545513]);
+map.setLimitBounds(bounds);
+//map.setFeatures(['road','building'])//突出显示道路和建筑物
+//为地图注册click事件获取鼠标点击出的经纬度坐标
+//var clickEventListener = map.on('click', function(e) {
+//    document.getElementById("lnglat").value = e.lnglat.getLng() + ',' + e.lnglat.getLat()
+//});
+
+</script>
+<script type="text/javascript" src='js/navigation.js'></script>
+<script type="text/javascript" src='js/addresspoint.js'></script>
+<script type="text/javascript" src='js/coverings.js'></script>
+</body>
+</html>

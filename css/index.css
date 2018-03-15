@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#maxbox {
+	background-image: url(../images/changqing.png);
+	width: 1366px;
+	height: 768px;
+	background-position: 100% 100%;
+}
+#banner {
+	height: 15%;
+	width: 980px;
+	background-image: url(../images/top1.jpg);
+	background-repeat: no-repeat;
+	margin-left: 150px;
+}
+#xiaoqu {
+	height: 45%;
+	width: 100%;
+	margin-top: 10%;
+	text-align: center;
+}
+#fotter {
+	height: 11%;
+	width: 100%;
+	margin-top: 5%;
+	text-align: center;
+	display: block;
+	font-weight: bold;
+	font-size: 18px;
+}

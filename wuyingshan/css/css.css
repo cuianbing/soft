@@ -1,0 +1,86 @@
+*{margin:0;padding:0;}
+html,body{width:100%;height:100%;}
+body{font-size:12px;font-family:微软雅黑;}
+.all_box{position: absolute; background: url("../images/bg.jpg"); width: 100%; height:100%;}
+.content{position: relative; background: url("../images/bg4.jpg"); width: 1080px; height: 680px;margin:auto;}
+.map_top{position:relative; width:100%;height:20%;}
+.button_box{position:absolute; width:500px; height:20px; top:140px;left:10px;}
+.map_box{position:relative; background: #adb; width:80%; height:78%;left:20%;margin-top:0px;}
+#panelbtn {position: absolute;top:140px;right: 0px;width: 30px;}
+#panel {
+            position: absolute;
+            background-color: white;
+            max-height: 50%;
+            overflow-y: auto;
+            top: 180px;
+            right: 0px;
+            width: 30px;
+        }
+.tip {
+	background-color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: absolute;
+	font-size: 12px;
+	right: 10px;
+	bottom: 10px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	line-height: 30px;
+}
+.weather {
+	background-color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: absolute;
+	font-size: 12px;
+	right: 250px;
+	top: 160px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	line-height: 30px;
+}
+
+.searchadd{position:absolute;left:10px;top:135px;}
+
+.erweima{position: absolute;left:10px;bottom:15px;}
+
+#message_box {
+	background-color: #780000;
+	padding-left: 5px;
+	padding-right: 5px;
+	position: absolute;
+	font-size: 12px;
+	width: 400px;
+	top:160px;
+	left:340px;
+	overflow-y: auto;
+}
+ 
+.lnglat{position: absolute;left:10px;top:200px; max-height: 80%;}
+
+.alert_massage{
+	position: absolute; 
+	background: highlight;
+	padding-left: 10px; padding-right: 10px;
+	font-size: 20px;
+	font-style: oblique;
+	text-align: center;
+	color: red;
+	width: 200px; height: 50px; 
+	left: 40%; top: 40%; 
+	display: none;}
+
+.setstp{background: blue; position: absolute; width: 30px; height: 40px; font-size: 18px; left: 300px;}
+
+@media only screen and (max-width: 500px) {
+    .all_box {background-color:lightblue;}
+	.content{position: relative; width: 100%; height: 100%;margin:auto;}
+	.map_top{display: none}
+	.map_box{width:100%; height:100%; left:0;}
+	.button_box{position:absolute; width:500px; height:20px; top:10px;left:10px;}
+	.weather{display: none}
+	.lnglat{position: absolute;left:10px;top:40px; max-height: 80%; display: none;}
+	.erweima{display: none}
+	#message_box{background-color: #780000; padding-left: 5px; padding-right: 5px; position: absolute; font-size: 12px;width: 100%; top:0px;left:0px;}
+}

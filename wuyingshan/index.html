@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, width=device-width, user-scalable=no">
+	<link href="css/css.css" rel="stylesheet" type="text/css">
+	<script src="http://webapi.amap.com/maps?v=1.3&key=3501d7059e92738eceefafbab27d1d4c&plugin=AMap.Walking"></script>
+	<title>山东交通学院校园导航系统</title>
+</head>
+<body>
+<!--最外层的大盒子-->
+<div class="all_box">
+	<!--所有内容的盒子-->
+	<div class="content">
+		<!--头部的盒子-->
+		<div class="map_top">
+			<table width="100%" height:"100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				 <tr>
+					<td height="100%" width="60%" background="images/top.jpg"></td>
+					 <td height="100%" width="40%" background="images/top.jpg" style="font-size:12px; color:#FFF" >
+					<!-- marquee设置滚动字幕：scrollAmount设置滚动速度，width设置滚动宽度 -->
+					<marquee scrollAmount=2 width=400> 欢迎您来到山东交通学院！</marquee>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="images/top1.jpg" width="100%" height="100%"></td>
+				</tr>
+			 </table>
+		  <!--头部盒子的根节点-->
+		</div>
+		<!--地图的盒子-->
+		<div class="map_box" id="allmap">
+		
+		</div>
+		<!--按钮的盒子-->
+		<div class="button_box">
+			<table>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<input type="search" id="searchaddress" placeholder="输入地点名称"  list="category" size="14">
+								</td>
+								<td>
+									<input type="image" src="./images/btn_search.jpg" onclick="showaddress()">
+								</td>
+							</tr>
+						</table>
+					</td>
+							<td><input type="button" onclick="setplan(this)" value="隐藏平面图" name="setstp"></td>
+				</tr>
+				<tr>
+					<td>
+						<select id="navigation_method" title="选择导航方式">
+							<option value="输入起点终点导航" selected>输入起点终点导航</option>
+							<option value="以当前位置为起点导航">以当前位置为起点导航</option>
+							<option value="以点击的位置为起点导航">以自定义位置为起点导航</option><br/>
+						</select>
+					</td>
+							
+				</tr>
+				<tr>
+					<td>
+						<input type="search" name="start_point" id="start_point" placeholder="输入起点" size="20" list="category">
+					</td>
+				</tr>
+					<tr><td><input type="search" name="end_point" id="end_point" placeholder="输入终点" size="20" list="category"></td></tr>
+					<tr><td><input type="button" onclick="navigate()" value="开始导航"></td></tr>
+			</table>
+		</div>
+
+		<!--导航信息的盒子-->
+		<div id="panelbtn"><input type="image" id="panelbutton" src="./images/btn_show.jpg" onclick="hidepanel()">
+		
+		</div>
+		<div id="panel">
+		
+		</div>
+
+		<!--定位信息的盒子-->
+		<div class="tip" id="tip">
+		</div>
+
+		<!--天气信息的盒子-->
+		<div class="weather" id="weather">
+		</div>
+
+		<!--搜索下拉框的地点数据-->
+			<datalist id="category" class="category" >    
+					<option value="一号宿舍楼">    
+					<option value="二号宿舍楼">    
+					<option value="三号宿舍楼">    
+					<option value="四号宿舍楼">    
+					<option value="五号宿舍楼">    
+					<option value="时代超市">    
+					<option value="开水房">    
+					<option value="浴室">    
+					<option value="风味餐厅">    
+					<option value="第一餐厅">    
+					<option value="机械实验室">    
+					<option value="交运驾校">    
+					<option value="校医院">    
+					<option value="孵化中心">    
+					<option value="交流中心">    
+					<option value="篮球场">    
+					<option value="排球场">    
+					<option value="操场">    
+					<option value="南门">    
+					<option value="东门">    
+					<option value="工程机械研究所">    
+					<option value="后山篮球场">    
+					<option value="不惑湖（不惑石）">    
+					<option value="打印室">    
+					<option value="联通营业厅">    
+					<option value="移动营业厅">    
+					<option value="西门">    
+					<option value="车检中心">    
+					<option value="图书馆">    
+					<option value="报告厅">    
+					<option value="一号教学楼">    
+					<option value="二号教学楼">    
+					<option value="三号教学楼">    
+					<option value="四号教学楼">    
+					<option value="北门">    
+					<option value="职业技术学院">    
+					<option value="公路工程研究所">     
+					<option value="航空中心">     
+			</datalist>
+		   
+
+		<!--输入起终点信息及导航按钮的盒子-->
+		<div class="lnglat" id="myPageTop">
+			<table>
+					<!--
+					<tr><td><input type="search" name="start_point" id="start_point" placeholder="输入起点" size="20" list="category"></td></tr>
+					<tr><td><input type="search" name="end_point" id="end_point" placeholder="输入终点" size="20" list="category"></td></tr>
+					<tr><td><input type="button" onclick="navigate()" value="开始导航"></td></tr>
+					-->
+				<!-- <tr><td class="column2"><label>左击获取经纬度：</label></td></tr>
+					<tr><td class="column2"><input type="text" readonly="true" id="lnglat"></td></tr> -->
+			</table>
+			
+			<!--输入起终点信息及导航按钮的盒子的根节点-->	
+		</div>
+			
+			<!-- 二维码的盒子 -->
+		<div class="erweima"><img title="微信扫一扫可以在手机访问哦" style="width: 130px;height: 130px;" src="./images/ewm.png"></div>
+			
+		<!-- 显示详细信息的盒子 -->
+		<div id="message_box" class="message_box"></div>
+
+		<!--所有内容的盒子的根节点-->
+		</div>
+
+		<!--最外层大盒子的根节点-->
+</div>
+
+<!--提示信息的盒子-->
+<div id="alert_massage" class="alert_massage">
+提示：
+</div>
+<!--提示信息的盒子的根节点-->
+
+
+<script type="text/javascript">
+//创建高德地图API
+var map = new AMap.Map("allmap", {
+        resizeEnable: true,
+        center: [116.968937,36.67616],
+        zoom: 17
+		
+    });
+	
+//设置地图显示的范围
+var bounds = new AMap.Bounds([116.956675,36.674809],[116.970988,36.685169]);
+map.setLimitBounds(bounds);
+//map.setFeatures(['road','building'])//突出显示道路和建筑物
+//为地图注册click事件获取鼠标点击出的经纬度坐标
+//var clickEventListener = map.on('click', function(e) {
+//    document.getElementById("lnglat").value = e.lnglat.getLng() + ',' + e.lnglat.getLat()
+//});
+
+</script>
+<script type="text/javascript" src='js/navigation.js'></script>
+<script type="text/javascript" src='js/addresspoint.js'></script>
+<script type="text/javascript" src='js/coverings.js'></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#maxbox {
+	background-image: url(../images/changqing.png);
+	width: 1366px;
+	height: 768px;
+	background-position: 100% 100%;
+}
